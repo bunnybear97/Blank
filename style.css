@@ -53,6 +53,44 @@ body {
 
 .navbar nav a:hover { color: var(--purple-light); }
 
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero text entrance */
+.hero-sub, .hero h1, .hero-role, .hero-desc, .hero-buttons {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.hero-sub { animation-delay: 0.1s; }
+.hero h1 { animation-delay: 0.25s; }
+.hero-role { animation-delay: 0.4s; }
+.hero-desc { animation-delay: 0.55s; }
+.hero-buttons { animation-delay: 0.7s; }
+
+.hero-graphic {
+  opacity: 0;
+  animation: fadeIn 1.2s ease 0.3s forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
 /* Hero */
 .hero {
   display: flex;
