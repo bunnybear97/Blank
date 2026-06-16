@@ -1,106 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Subhasree Babu | Portfolio</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subhasree Babu | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">Subhasree<span>.</span></div>
-    <nav>
-      <ul>
+
+  <!-- Stars canvas — fixed full-screen background -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- ───────────── NAVBAR ───────────── -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" id="logo-link">Subhasree<span class="dot">.</span></a>
+      <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#work">Work</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-    </nav>
-  </header>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="#about" class="mob-link">About</a></li>
+        <li><a href="#experience" class="mob-link">Experience</a></li>
+        <li><a href="#skills" class="mob-link">Skills</a></li>
+        <li><a href="#projects" class="mob-link">Projects</a></li>
+        <li><a href="#contact" class="mob-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <!-- ───────────── HERO ───────────── -->
   <section class="hero" id="home">
-    <div class="hero-content">
-      <p class="greeting">Hi, I'm</p>
-      <h1>Subhasree Babu</h1>
-      <p class="tagline">I build clean, reliable software & web applications</p>
-      <a href="#work" class="btn">View My Work</a>
+    <div class="hero-deco">
+      <div class="deco-dot"></div>
+      <div class="deco-line"></div>
     </div>
-    <div class="hero-glow"></div>
+
+    <div class="hero-body">
+      <p class="hero-hi reveal-left">Hi, I'm</p>
+      <h1 class="hero-name reveal-left">Subhasree <span class="purple">Babu.</span></h1>
+      <p class="hero-sub reveal-left">
+        I build clean, reliable software<br />
+        &amp; web applications.
+      </p>
+    </div>
+
+    <div class="scroll-wrap">
+      <a href="#about" class="scroll-pill">
+        <div class="scroll-dot"></div>
+      </a>
+    </div>
   </section>
 
-  <section class="overview" id="about">
-    <h2>Overview.</h2>
-    <p>
-      Computer Science student with strong analytical and problem-solving skills,
-      experienced in developing software applications and technical solutions using
-      Java, Spring Boot, Python, C++, C#, and TypeScript. Knowledgeable in algorithms,
-      data structures, object-oriented programming, databases, and software development
-      methodologies. Passionate about building efficient, reliable solutions and
-      continuously developing technical and professional skills.
+  <!-- ───────────── ABOUT ───────────── -->
+  <section class="sec" id="about">
+    <div class="sec-label reveal-left">
+      <p class="sec-sub">Introduction</p>
+      <h2 class="sec-title">Overview.</h2>
+    </div>
+    <p class="about-text reveal-up">
+      Computer Science student with strong analytical and problem-solving skills, experienced
+      in developing software applications and technical solutions using Java, Spring Boot,
+      Python, C++, C#, and TypeScript. Knowledgeable in algorithms, data structures,
+      object-oriented programming, databases, and software development methodologies.
+      Passionate about building efficient, reliable solutions and continuously developing
+      technical and professional skills.
     </p>
-  </section>
-
-  <section class="skills" id="skills">
-    <h2>Skills.</h2>
-    <div class="skills-grid">
-      <div class="skill-card">Java</div>
-      <div class="skill-card">Spring Boot</div>
-      <div class="skill-card">Python</div>
-      <div class="skill-card">C++</div>
-      <div class="skill-card">C#</div>
-      <div class="skill-card">TypeScript</div>
-      <div class="skill-card">JavaScript / Node</div>
-      <div class="skill-card">MySQL</div>
-      <div class="skill-card">REST APIs</div>
-      <div class="skill-card">Git & Agile</div>
-      <div class="skill-card">Data Structures & Algorithms</div>
-      <div class="skill-card">Cloud Computing</div>
-    </div>
-  </section>
-
-  <section class="work" id="work">
-    <h2>Projects.</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <div class="project-thumb"></div>
-        <h3>EasyFind</h3>
-        <p>Local Professional Discovery Application — full-stack app connecting users
-          with local professionals through radius-based search. Designed backend APIs
-          and database structures, with responsive frontend components.</p>
-        <span class="tag">Web Development</span>
+    <div class="service-grid">
+      <div class="service-card reveal-up">
+        <div class="grad-border">
+          <div class="card-inner">
+            <i class="fas fa-code svc-icon"></i>
+            <h3>Software Engineer</h3>
+          </div>
+        </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb thumb2"></div>
-        <h3>Together Culture Platform</h3>
-        <p>University team project (1st rank) — full-stack web platform built with
-          JavaScript, Node, REST APIs, and MySQL. Implemented backend services,
-          responsive UI components, and collaborated using Agile and version control.</p>
-        <span class="tag">Full-Stack Web App</span>
+      <div class="service-card reveal-up">
+        <div class="grad-border">
+          <div class="card-inner">
+            <i class="fas fa-layer-group svc-icon"></i>
+            <h3>Full-Stack Developer</h3>
+          </div>
+        </div>
+      </div>
+      <div class="service-card reveal-up">
+        <div class="grad-border">
+          <div class="card-inner">
+            <i class="fas fa-server svc-icon"></i>
+            <h3>Backend Developer</h3>
+          </div>
+        </div>
+      </div>
+      <div class="service-card reveal-up">
+        <div class="grad-border">
+          <div class="card-inner">
+            <i class="fas fa-brain svc-icon"></i>
+            <h3>Problem Solver</h3>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <h2>Contact.</h2>
-    <form class="contact-form" id="contact-form">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" placeholder="What's your name?" required />
-      <label for="email">Your Email</label>
-      <input type="email" id="email" placeholder="What's your email?" required />
-      <label for="message">Your Message</label>
-      <textarea id="message" rows="5" placeholder="Send me a message..." required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-    <p class="contact-info">
-      subhasreebabu11.b@gmail.com &nbsp;|&nbsp; +44 7717 665409 &nbsp;|&nbsp; Cambridge, UK
+  <!-- ───────────── EXPERIENCE ───────────── -->
+  <section class="sec" id="experience">
+    <div class="sec-label reveal-left">
+      <p class="sec-sub">What I have done so far</p>
+      <h2 class="sec-title">Education &amp; Experience.</h2>
+    </div>
+    <div class="timeline">
+      <!-- Item 1 -->
+      <div class="tl-item reveal-up">
+        <div class="tl-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="tl-card">
+          <h3 class="tl-title">BSc Computer Science</h3>
+          <p class="tl-company">University — Cambridge, UK</p>
+          <p class="tl-date">2022 – Present</p>
+          <ul class="tl-points">
+            <li>Studied core modules: algorithms, data structures, OOP, databases, and software engineering.</li>
+            <li>Achieved 1st place in group project (Together Culture Platform).</li>
+            <li>Developed strong skills in Java, Python, C++, C#, TypeScript, and SQL.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="tl-item reveal-up">
+        <div class="tl-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="tl-card">
+          <h3 class="tl-title">Full-Stack Developer</h3>
+          <p class="tl-company">EasyFind — Personal Project</p>
+          <p class="tl-date">2023</p>
+          <ul class="tl-points">
+            <li>Designed and implemented backend REST APIs for radius-based professional discovery.</li>
+            <li>Built responsive frontend components and relational database structures.</li>
+            <li>Integrated MySQL with Node.js backend for efficient data retrieval.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="tl-item reveal-up">
+        <div class="tl-icon"><i class="fas fa-users"></i></div>
+        <div class="tl-card">
+          <h3 class="tl-title">Lead Developer</h3>
+          <p class="tl-company">Together Culture Platform — University Team Project</p>
+          <p class="tl-date">2024</p>
+          <ul class="tl-points">
+            <li>Led full-stack development using JavaScript, Node.js, REST APIs, and MySQL.</li>
+            <li>Implemented backend services and responsive UI components.</li>
+            <li>Collaborated with Agile methodology and Git version control — ranked 1st.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── SKILLS ───────────── -->
+  <section class="sec" id="skills">
+    <div class="sec-label reveal-left">
+      <p class="sec-sub">What I work with</p>
+      <h2 class="sec-title">Technical Skills.</h2>
+    </div>
+    <div class="balls-grid">
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>Java</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>Spring Boot</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>Python</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>C++</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>C#</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>TypeScript</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>JavaScript</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>Node.js</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>MySQL</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>REST APIs</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>Git</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>Agile</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>DSA</span></div></div>
+      <div class="ball-wrap reveal-up"><div class="skill-ball"><span>Cloud</span></div></div>
+    </div>
+  </section>
+
+  <!-- ───────────── PROJECTS ───────────── -->
+  <section class="sec" id="projects">
+    <div class="sec-label reveal-left">
+      <p class="sec-sub">My work</p>
+      <h2 class="sec-title">Projects.</h2>
+    </div>
+    <p class="proj-intro reveal-up">
+      The following projects showcase my skills and experience through real-world examples.
+      Each project reflects my ability to solve problems, manage technologies, and
+      deliver effective solutions end-to-end.
     </p>
+    <div class="proj-grid">
+      <!-- Project 1 -->
+      <div class="proj-card reveal-up" data-tilt>
+        <div class="proj-thumb-wrap">
+          <div class="proj-thumb" style="background: linear-gradient(135deg,#6d28d9,#915eff 60%,#c084fc);"></div>
+          <div class="proj-overlay">
+            <div class="gh-btn"><i class="fab fa-github"></i></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">EasyFind</h3>
+          <p class="proj-desc">
+            Local Professional Discovery Application — a full-stack app connecting users
+            with local professionals through radius-based search. Designed backend REST APIs,
+            database structures, and responsive frontend components.
+          </p>
+          <div class="proj-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">REST API</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+      <!-- Project 2 -->
+      <div class="proj-card reveal-up" data-tilt>
+        <div class="proj-thumb-wrap">
+          <div class="proj-thumb" style="background: linear-gradient(135deg,#1e3a8a,#4c1d95 60%,#6d28d9);"></div>
+          <div class="proj-overlay">
+            <div class="gh-btn"><i class="fab fa-github"></i></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Together Culture Platform</h3>
+          <p class="proj-desc">
+            University team project achieving 1st place — a full-stack web platform built
+            with JavaScript, Node.js, REST APIs, and MySQL. Implemented backend services,
+            responsive UI components, and collaborated using Agile and Git.
+          </p>
+          <div class="proj-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Agile</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- ───────────── CONTACT ───────────── -->
+  <section class="sec" id="contact">
+    <div class="sec-label reveal-left">
+      <p class="sec-sub">Get in touch</p>
+      <h2 class="sec-title">Contact.</h2>
+    </div>
+    <div class="contact-layout">
+      <form class="contact-form reveal-up" id="contact-form">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="What's your name?" required />
+        <label for="email">Your Email</label>
+        <input type="email" id="email" placeholder="What's your email?" required />
+        <label for="message">Your Message</label>
+        <textarea id="message" rows="6" placeholder="What would you like to say?" required></textarea>
+        <button type="submit" class="send-btn">
+          Send Message &nbsp;<i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+
+      <div class="contact-info reveal-up">
+        <div class="info-item">
+          <span class="info-icon"><i class="fas fa-envelope"></i></span>
+          <a href="mailto:subhasreebabu11.b@gmail.com">subhasreebabu11.b@gmail.com</a>
+        </div>
+        <div class="info-item">
+          <span class="info-icon"><i class="fas fa-phone"></i></span>
+          <span>+44 7717 665409</span>
+        </div>
+        <div class="info-item">
+          <span class="info-icon"><i class="fas fa-map-marker-alt"></i></span>
+          <span>Cambridge, UK</span>
+        </div>
+        <div class="socials">
+          <a href="#" class="soc-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" class="soc-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FOOTER ───────────── -->
   <footer>
-    <p>&copy; 2026 Subhasree Babu. All rights reserved.</p>
+    <div class="footer-inner">
+      <p class="footer-name">Subhasree Babu</p>
+      <p class="footer-copy">&copy; 2026 All rights reserved.</p>
+    </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
