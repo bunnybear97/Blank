@@ -49,6 +49,130 @@ function initStars() {
 }
 
 /* ============================================================
+   3D ROTATING COMPUTER (hero) — procedural, no external model file
+============================================================ */
+function initComputerModel() {
+  const canvas = document.getElementById('computer-canvas');
+  if (!canvas || typeof THREE === 'undefined') return;
+  if (window.innerWidth <= 900) return;
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+  camera.position.set(2.4, 1.5, 4.4);
+  camera.lookAt(0, 0.8, 0);
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+  const pointLight = new THREE.PointLight(0x915eff, 3, 20);
+  pointLight.position.set(2, 3, 3);
+  scene.add(pointLight);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  dirLight.position.set(-3, 4, 2);
+  scene.add(dirLight);
+
+  const computer = new THREE.Group();
+
+  // Monitor frame
+  const frame = new THREE.Mesh(
+    new THREE.BoxGeometry(2.2, 1.4, 0.12),
+    new THREE.MeshStandardMaterial({ color: 0x1d1836, metalness: 0.3, roughness: 0.5 })
+  );
+  frame.position.set(0, 1.1, 0);
+  computer.add(frame);
+
+  // Glowing "code editor" screen texture
+  const sc = document.createElement('canvas');
+  sc.width = 512; sc.height = 320;
+  const ctx = sc.getContext('2d');
+  ctx.fillStyle = '#0c0820';
+  ctx.fillRect(0, 0, 512, 320);
+  const codeColors = ['#915eff', '#c084fc', '#4ade80', '#60a5fa', '#f472b6'];
+  for (let i = 0; i < 13; i++) {
+    ctx.fillStyle = codeColors[i % codeColors.length];
+    const w = 50 + Math.random() * 300;
+    ctx.fillRect(20 + Math.random() * 40, 14 + i * 22, w, 9);
+  }
+  const screenTex = new THREE.CanvasTexture(sc);
+  const screen = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.95, 1.2),
+    new THREE.MeshStandardMaterial({ map: screenTex, emissive: 0x915eff, emissiveIntensity: 0.35, emissiveMap: screenTex })
+  );
+  screen.position.set(0, 1.1, 0.065);
+  computer.add(screen);
+
+  const standMat = new THREE.MeshStandardMaterial({ color: 0x2a2350, metalness: 0.4, roughness: 0.4 });
+
+  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.08, 0.5, 16), standMat);
+  neck.position.set(0, 0.35, 0);
+  computer.add(neck);
+
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.5, 0.06, 32), standMat);
+  base.position.set(0, 0.07, 0);
+  computer.add(base);
+
+  const keyboard = new THREE.Mesh(
+    new THREE.BoxGeometry(1.3, 0.07, 0.5),
+    new THREE.MeshStandardMaterial({ color: 0x1d1836, metalness: 0.2, roughness: 0.6 })
+  );
+  keyboard.position.set(0, 0.03, 0.95);
+  computer.add(keyboard);
+
+  computer.position.set(0, -0.7, 0);
+  scene.add(computer);
+
+  // Orbiting purple accent shapes
+  const accents = [];
+  for (let i = 0; i < 6; i++) {
+    const mesh = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(0.07 + Math.random() * 0.05, 0),
+      new THREE.MeshStandardMaterial({
+        color: 0x915eff,
+        emissive: 0x915eff,
+        emissiveIntensity: 0.6,
+        wireframe: Math.random() > 0.5,
+      })
+    );
+    mesh.userData = {
+      angle: (i / 6) * Math.PI * 2,
+      radius: 1.6 + Math.random() * 0.6,
+      speed: 0.3 + Math.random() * 0.3,
+      yOff: Math.random() * Math.PI * 2,
+    };
+    accents.push(mesh);
+    scene.add(mesh);
+  }
+
+  let t = 0;
+  (function animate() {
+    requestAnimationFrame(animate);
+    t += 0.01;
+    computer.rotation.y = Math.sin(t * 0.4) * 0.35;
+    computer.position.y = -0.7 + Math.sin(t * 0.8) * 0.05;
+    accents.forEach(mesh => {
+      const d = mesh.userData;
+      mesh.position.set(
+        Math.cos(t * d.speed + d.angle) * d.radius,
+        1.1 + Math.sin(t * d.speed * 1.3 + d.yOff) * 0.6,
+        Math.sin(t * d.speed + d.angle) * d.radius - 0.3
+      );
+      mesh.rotation.x += 0.02;
+      mesh.rotation.y += 0.015;
+    });
+    renderer.render(scene, camera);
+  })();
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 900 || !canvas.clientWidth) return;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  });
+}
+
+/* ============================================================
    NAVBAR
 ============================================================ */
 function initNavbar() {
@@ -239,6 +363,7 @@ function initActiveNav() {
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   initStars();
+  initComputerModel();
   initNavbar();
   initSmoothScroll();
   initReveal();
