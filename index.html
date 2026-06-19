@@ -57,7 +57,10 @@
       </p>
     </div>
 
-    <canvas id="computer-canvas" class="computer-canvas"></canvas>
+    <div class="computer-canvas-wrap">
+      <canvas id="computer-canvas" class="computer-canvas"></canvas>
+      <div class="model-loading" id="model-loading"><span></span></div>
+    </div>
 
     <div class="hero-rings" aria-hidden="true">
       <span class="ring ring-1"></span>
@@ -351,10 +354,18 @@
     <div class="footer-inner">
       <p class="footer-name">Subhasree Babu</p>
       <p class="footer-copy">&copy; 2026 All rights reserved.</p>
+      <p class="footer-credit">
+        3D model: "Gaming Desktop PC" by
+        <a href="https://sketchfab.com/Yolala1232" target="_blank" rel="noopener">Yolala1232</a>
+        on <a href="https://sketchfab.com/3d-models/gaming-desktop-pc-d1d8282c9916438091f11aeb28787b66" target="_blank" rel="noopener">Sketchfab</a>,
+        licensed <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY-4.0</a>.
+      </p>
     </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/controls/OrbitControls.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
