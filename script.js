@@ -123,6 +123,38 @@ function initComputerModel() {
   computer.position.set(0, -0.7, 0);
   scene.add(computer);
 
+  // Secondary device — vertical tower with spinning RGB rings (beside the monitor)
+  const rgbTower = new THREE.Group();
+
+  const towerBody = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.1, 0.12, 0.9, 24),
+    new THREE.MeshStandardMaterial({ color: 0x12102a, metalness: 0.6, roughness: 0.3 })
+  );
+  rgbTower.add(towerBody);
+
+  const ringColors = [0x60a5fa, 0x915eff, 0xfc4d97];
+  const rgbRings = [];
+  ringColors.forEach((color, i) => {
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(0.22 - i * 0.04, 0.012, 16, 64),
+      new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1.1, metalness: 0.2, roughness: 0.3 })
+    );
+    ring.position.y = 0.3 - i * 0.02;
+    ring.rotation.x = Math.PI / 2;
+    rgbTower.add(ring);
+    rgbRings.push(ring);
+  });
+
+  const towerBase = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.22, 0.24, 0.05, 32),
+    standMat
+  );
+  towerBase.position.y = -0.45;
+  rgbTower.add(towerBase);
+
+  rgbTower.position.set(1.55, 0.55, -0.4);
+  scene.add(rgbTower);
+
   // Orbiting purple accent shapes
   const accents = [];
   for (let i = 0; i < 6; i++) {
@@ -151,6 +183,11 @@ function initComputerModel() {
     t += 0.01;
     computer.rotation.y = Math.sin(t * 0.4) * 0.35;
     computer.position.y = -0.7 + Math.sin(t * 0.8) * 0.05;
+    rgbTower.rotation.y += 0.012;
+    rgbTower.position.y = 0.55 + Math.sin(t * 0.9 + 1) * 0.04;
+    rgbRings.forEach((ring, i) => {
+      ring.rotation.z += 0.01 + i * 0.004;
+    });
     accents.forEach(mesh => {
       const d = mesh.userData;
       mesh.position.set(
