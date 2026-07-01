@@ -892,6 +892,7 @@ footer {
 .service-grid .service-card:nth-child(2) { transition-delay: 0.12s; }
 .service-grid .service-card:nth-child(3) { transition-delay: 0.24s; }
 .service-grid .service-card:nth-child(4) { transition-delay: 0.36s; }
+.service-grid .service-card:nth-child(5) { transition-delay: 0.48s; }
 
 /* (Stagger per grid is defined inside the SKILLS/BALLS section above) */
 
